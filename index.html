@@ -135,18 +135,17 @@ nav a:hover{color:var(--cumaru-dark)}
 
 /* equipe */
 .equipe-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.pessoa{display:grid;grid-template-columns:1fr 1fr;background:var(--papel);border:1px solid rgba(20,32,31,.14)}
-.pessoa-foto{min-height:380px;background:#DAD5C8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
-.pessoa-foto span:first-child{font-size:56px;font-weight:800;letter-spacing:-.02em}
-.pessoa-foto span:last-child{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--muted)}
-.pessoa-txt{padding:28px 24px;display:flex;flex-direction:column;gap:12px;justify-content:flex-end}
-.pessoa-cargo{font-family:var(--mono);font-size:10px;letter-spacing:.14em}
-.pessoa-txt h3{margin:0;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.05}
-.pessoa-txt p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-soft)}
-.pessoa-reg{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted)}
+.pessoa{position:relative;aspect-ratio:4/5;overflow:hidden;background:#DAD5C8}
+.pessoa-photo{width:100%;height:100%;object-fit:cover}
+.pessoa-overlay{position:absolute;left:0;right:0;bottom:0;padding:30px 26px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(to top,rgba(20,32,31,.94) 0%,rgba(20,32,31,.7) 45%,transparent 100%)}
+.pessoa-quote{margin:0 0 4px;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--papel);border-left:3px solid var(--cumaru);padding-left:14px}
+.pessoa-quote.is-placeholder{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:#A9B0A8;border-left-color:rgba(247,246,242,.25)}
+.pessoa-cargo{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--cumaru)}
+.pessoa-overlay h3{margin:0;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--papel)}
+.pessoa-reg{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:#A9B0A8}
 .pessoa-creds{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
-.pessoa-creds li{font-size:12px;color:var(--ink-soft);position:relative;padding-left:12px}
-.pessoa-creds li::before{content:"–";position:absolute;left:0;color:var(--muted)}
+.pessoa-creds li{font-size:12px;color:#C9C4B6;position:relative;padding-left:12px}
+.pessoa-creds li::before{content:"–";position:absolute;left:0;color:#8f8f86}
 
 /* processo */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
@@ -203,8 +202,6 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
   .bast-grid,.sobre-inner,.equipe-grid,.cont-inner,.proj-master{grid-template-columns:1fr}
   .reels{justify-content:flex-start}
   .dest-fotos{grid-template-columns:repeat(2,1fr)}
-  .pessoa{grid-template-columns:1fr}
-  .pessoa-foto{min-height:260px}
 }
 @media (max-width:640px){
   .nav-wrap{padding:14px 20px}
@@ -302,11 +299,12 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
     </div>
     <div class="equipe-grid">
       <div class="pessoa reveal">
-        <div class="pessoa-foto" style="padding:0"><img src="assets/camila.jpg" alt="Camila Argiles" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="pessoa-txt">
-          <span class="pessoa-cargo" style="color:var(--cumaru-dark)">ENGENHARIA CIVIL</span>
+        <img class="pessoa-photo" src="assets/camila.jpg" alt="Camila Argiles">
+        <div class="pessoa-overlay">
+          <blockquote class="pessoa-quote is-placeholder">Frase da Camila — a confirmar</blockquote>
           <h3>Camila Argiles</h3>
-          <span class="pessoa-reg">CREA-SC · ENG. CIVIL</span>
+          <span class="pessoa-cargo">ENGENHARIA CIVIL</span>
+          <span class="pessoa-reg">CREA-SC 156920-2J · 156467-8</span>
           <ul class="pessoa-creds">
             <li>Pós-graduação em Design de Interiores e Produção de Ambientes</li>
             <li>Projetos autorais</li>
@@ -316,10 +314,11 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
         </div>
       </div>
       <div class="pessoa reveal">
-        <div class="pessoa-foto" style="padding:0"><img src="assets/karoline.jpg" alt="Karoline Gaspar" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="pessoa-txt">
-          <span class="pessoa-cargo" style="color:var(--mata)">ARQUITETURA</span>
+        <img class="pessoa-photo" src="assets/karoline.jpg" alt="Karoline Gaspar">
+        <div class="pessoa-overlay">
+          <blockquote class="pessoa-quote is-placeholder">Frase da Karoline — a confirmar</blockquote>
           <h3>Karoline Gaspar</h3>
+          <span class="pessoa-cargo">ARQUITETURA</span>
           <span class="pessoa-reg">CAU-SC · ARQUITETA</span>
         </div>
       </div>
