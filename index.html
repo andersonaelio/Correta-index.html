@@ -86,7 +86,18 @@ nav a:hover{color:var(--cumaru-dark)}
 .eyebrow.on-light{color:var(--cumaru-dark)}
 
 /* projetos */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px 28px;transition:opacity .35s cubic-bezier(.16,1,.3,1)}
+.project-expand{display:none}
+.expand-back{font-family:var(--mono);font-size:12px;letter-spacing:.1em;background:none;border:1px solid rgba(20,32,31,.25);color:var(--ink);padding:11px 20px;cursor:pointer;margin-bottom:36px;transition:background .2s,color .2s,border-color .2s}
+.expand-back:hover{background:var(--noturno);color:var(--papel);border-color:var(--noturno)}
+.expand-head{margin-bottom:24px}
+.expand-head h3{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.02em;margin:6px 0 0}
+.expand-hero-wrap{aspect-ratio:16/9;overflow:hidden;margin-bottom:20px;cursor:pointer;background:var(--noturno)}
+.expand-hero{width:100%;height:100%;object-fit:cover;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.expand-hero-wrap:hover .expand-hero{transform:scale(1.02)}
+.expand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.expand-grid img{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.expand-grid img:hover{transform:scale(1.03)}
 .card{display:flex;flex-direction:column;gap:12px;text-align:left;background:none;border:0;padding:0;font-family:inherit;cursor:pointer;text-decoration:none;color:var(--ink)}
 .card .thumb{aspect-ratio:4/3;overflow:hidden;background:#DAD5C8}
 .card img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1),filter .7s cubic-bezier(.16,1,.3,1);filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01)}
@@ -300,6 +311,15 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
         <h3>Casa Frente-Mar</h3>
       </button>
     </div>
+    <div class="project-expand" id="projectExpand">
+      <button type="button" class="expand-back" id="expandBack">← Voltar aos projetos</button>
+      <div class="expand-head">
+        <span class="section-note" id="expandMeta"></span>
+        <h3 id="expandTitle"></h3>
+      </div>
+      <div class="expand-hero-wrap"><img class="expand-hero" id="expandHero" src="" alt=""></div>
+      <div class="expand-grid" id="expandGrid"></div>
+    </div>
   </div>
 </section>
 <section id="equipe" class="section" style="background:var(--noturno)">
@@ -509,41 +529,37 @@ addEventListener('load',()=>{
   });
 });
 
-// lightbox de galeria por projeto
+// FLIP genérico — anima um elemento crescendo/encolhendo da posição de origem até a posição final
 const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),
       lbTitle=document.getElementById('lbTitle'),lbCount=document.getElementById('lbCount');
 let lbImgs=[],lbIdx=0;
-function lbShow(){lbImg.src='assets/'+lbImgs[lbIdx];lbCount.textContent=(lbIdx+1)+' / '+lbImgs.length}
-function lbOpen(imgs,title,sourceEl){
-  lbImgs=imgs;lbIdx=0;lbTitle.textContent=title;
-  lb.classList.add('open');
-  document.body.style.overflow='hidden';
-  if(!sourceEl){lbShow();return}
-  // FLIP: a foto clicada cresce a partir da posição/tamanho dela no grid até virar a imagem grande
+function flipInto(sourceEl,targetEl,duration){
   const startRect=sourceEl.getBoundingClientRect();
-  lbImg.src='assets/'+lbImgs[lbIdx];
-  lbCount.textContent='1 / '+lbImgs.length;
-  lbImg.style.transition='none';
+  targetEl.style.transition='none';
   requestAnimationFrame(()=>{
-    const endRect=lbImg.getBoundingClientRect();
+    const endRect=targetEl.getBoundingClientRect();
     const scaleX=startRect.width/endRect.width, scaleY=startRect.height/endRect.height;
     const dx=(startRect.left+startRect.width/2)-(endRect.left+endRect.width/2);
     const dy=(startRect.top+startRect.height/2)-(endRect.top+endRect.height/2);
-    lbImg.style.transformOrigin='center center';
-    lbImg.style.transform=`translate(${dx}px,${dy}px) scale(${scaleX},${scaleY})`;
+    targetEl.style.transformOrigin='center center';
+    targetEl.style.transform=`translate(${dx}px,${dy}px) scale(${scaleX},${scaleY})`;
     requestAnimationFrame(()=>{
-      lbImg.style.transition='transform .6s cubic-bezier(.16,1,.3,1)';
-      lbImg.style.transform='none';
+      targetEl.style.transition=`transform ${duration}ms cubic-bezier(.16,1,.3,1)`;
+      targetEl.style.transform='none';
     });
   });
 }
+
+// modal — zoom cheio numa foto, com navegação
+function lbShow(){lbImg.src='assets/'+lbImgs[lbIdx];lbCount.textContent=(lbIdx+1)+' / '+lbImgs.length}
+function lbOpen(imgs,title,sourceEl,startIdx){
+  lbImgs=imgs;lbIdx=startIdx||0;lbTitle.textContent=title;
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+  lbShow();
+  if(sourceEl)flipInto(sourceEl,lbImg,900);
+}
 function lbCloseFn(){lb.classList.remove('open');document.body.style.overflow=''}
-document.querySelectorAll('[data-gallery]').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const thumbImg=btn.querySelector('.thumb img');
-    lbOpen(btn.dataset.gallery.split(','),btn.dataset.title,thumbImg);
-  });
-});
 document.getElementById('lbClose').addEventListener('click',lbCloseFn);
 document.getElementById('lbPrev').addEventListener('click',()=>{lbIdx=(lbIdx-1+lbImgs.length)%lbImgs.length;lbShow()});
 document.getElementById('lbNext').addEventListener('click',()=>{lbIdx=(lbIdx+1)%lbImgs.length;lbShow()});
@@ -553,6 +569,56 @@ addEventListener('keydown',e=>{
   if(e.key==='Escape')lbCloseFn();
   if(e.key==='ArrowLeft')document.getElementById('lbPrev').click();
   if(e.key==='ArrowRight')document.getElementById('lbNext').click();
+});
+
+// expansão em página — clicar num projeto esconde os outros e mostra todas as fotos dele ali mesmo
+const grid=document.querySelector('.grid');
+const expandPanel=document.getElementById('projectExpand');
+const expandHero=document.getElementById('expandHero');
+const expandGridEl=document.getElementById('expandGrid');
+const expandTitleEl=document.getElementById('expandTitle');
+const expandMetaEl=document.getElementById('expandMeta');
+
+function expandProject(imgs,title,meta,sourceEl){
+  grid.style.opacity='0';
+  setTimeout(()=>{
+    grid.style.display='none';
+    expandTitleEl.textContent=title;
+    expandMetaEl.textContent=meta;
+    expandHero.src='assets/'+imgs[0];
+    expandHero.onclick=()=>lbOpen(imgs,title,expandHero,0);
+    expandGridEl.innerHTML='';
+    imgs.slice(1).forEach((name,i)=>{
+      const im=document.createElement('img');
+      im.src='assets/'+name;im.loading='lazy';im.alt=title;
+      im.addEventListener('click',()=>lbOpen(imgs,title,im,i+1));
+      expandGridEl.appendChild(im);
+    });
+    expandPanel.style.display='block';
+    expandPanel.style.opacity='0';
+    requestAnimationFrame(()=>{
+      expandPanel.style.transition='opacity .4s cubic-bezier(.16,1,.3,1)';
+      expandPanel.style.opacity='1';
+    });
+    if(sourceEl)flipInto(sourceEl,expandHero,900);
+    expandPanel.scrollIntoView({behavior:'smooth',block:'start'});
+  },350);
+}
+document.querySelectorAll('[data-gallery]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const thumbImg=btn.querySelector('.thumb img');
+    const meta=btn.querySelector('.card-meta span').textContent;
+    expandProject(btn.dataset.gallery.split(','),btn.dataset.title,meta,thumbImg);
+  });
+});
+document.getElementById('expandBack').addEventListener('click',()=>{
+  expandPanel.style.opacity='0';
+  setTimeout(()=>{
+    expandPanel.style.display='none';
+    grid.style.display='';
+    requestAnimationFrame(()=>{grid.style.opacity='1'});
+    grid.scrollIntoView({behavior:'smooth',block:'start'});
+  },350);
 });
 </script>
 </body>
