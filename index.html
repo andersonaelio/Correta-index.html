@@ -98,7 +98,7 @@ nav a:hover{color:var(--cumaru-dark)}
 .proj-thumbs img.active,.proj-thumbs img:hover{opacity:1}
 .proj-side{position:relative;height:56vh;min-height:420px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent,black 10%,black 90%,transparent);mask-image:linear-gradient(to bottom,transparent,black 10%,black 90%,transparent)}
 .proj-side-track{display:flex;flex-direction:column;gap:14px;animation:sidescroll 34s linear infinite}
-.proj-side:hover .proj-side-track{animation-play-state:paused}
+@media (hover:hover){.proj-side:hover .proj-side-track{animation-play-state:paused}}
 @keyframes sidescroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 .side-card{display:flex;gap:14px;align-items:center;text-align:left;text-decoration:none;color:var(--ink);background:none;border:1px solid transparent;padding:10px;cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s,opacity .2s}
 .side-card:hover{border-color:rgba(20,32,31,.15);background:rgba(255,255,255,.5)}
