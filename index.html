@@ -86,25 +86,21 @@ nav a:hover{color:var(--cumaru-dark)}
 .eyebrow.on-light{color:var(--cumaru-dark)}
 
 /* projetos */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px 28px;transition:opacity .35s cubic-bezier(.16,1,.3,1)}
-.project-expand{display:none}
-.expand-back{font-family:var(--mono);font-size:12px;letter-spacing:.1em;background:none;border:1px solid rgba(20,32,31,.25);color:var(--ink);padding:11px 20px;cursor:pointer;margin-bottom:36px;transition:background .2s,color .2s,border-color .2s}
-.expand-back:hover{background:var(--noturno);color:var(--papel);border-color:var(--noturno)}
-.expand-head{margin-bottom:24px}
-.expand-head h3{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.02em;margin:6px 0 0}
-.expand-hero-wrap{aspect-ratio:16/9;overflow:hidden;margin-bottom:20px;cursor:pointer;background:var(--noturno)}
-.expand-hero{width:100%;height:100%;object-fit:cover;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01);transition:transform .5s cubic-bezier(.16,1,.3,1)}
-.expand-hero-wrap:hover .expand-hero{transform:scale(1.02)}
-.expand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
-.expand-grid img{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01);transition:transform .5s cubic-bezier(.16,1,.3,1)}
-.expand-grid img:hover{transform:scale(1.03)}
-.card{display:flex;flex-direction:column;gap:12px;text-align:left;background:none;border:0;padding:0;font-family:inherit;cursor:pointer;text-decoration:none;color:var(--ink)}
-.card .thumb{aspect-ratio:4/3;overflow:hidden;background:#DAD5C8}
-.card img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1),filter .7s cubic-bezier(.16,1,.3,1);filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01)}
-.card:hover img{filter:saturate(.94) contrast(1.05) sepia(.08) brightness(1.01)}
-.card:hover img{transform:scale(1.045)}
-.card-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted)}
-.card h3{margin:0;font-size:24px;font-weight:700;letter-spacing:-.015em}
+.proj-master{display:grid;grid-template-columns:1.7fr 1fr;gap:56px;align-items:start}
+.proj-viewer-img-wrap{aspect-ratio:4/3;overflow:hidden;background:var(--noturno);cursor:zoom-in}
+.proj-viewer-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01);transition:opacity .35s ease}
+.proj-thumbs{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.proj-thumbs img{width:60px;height:60px;object-fit:cover;cursor:pointer;opacity:.45;transition:opacity .2s;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01)}
+.proj-thumbs img.active,.proj-thumbs img:hover{opacity:1}
+.proj-list{display:flex;flex-direction:column}
+.proj-item{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;background:none;border:0;border-top:1px solid rgba(20,32,31,.15);padding:20px 0;cursor:pointer;font-family:inherit;width:100%}
+.proj-list a.proj-item{text-decoration:none;color:inherit}
+.proj-item:last-child{border-bottom:1px solid rgba(20,32,31,.15)}
+.proj-item-num{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.proj-item-title{font-size:1.35rem;font-weight:700;letter-spacing:-.015em;opacity:.4;transition:opacity .2s}
+.proj-item.active .proj-item-title{opacity:1;color:var(--cumaru-dark)}
+.proj-item:hover .proj-item-title{opacity:.85}
+.proj-item-meta{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted)}
 
 /* destaque */
 .destaque{background:var(--papel);border-top:1px solid rgba(20,32,31,.1)}
@@ -199,7 +195,7 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
 
 /* responsivo */
 @media (max-width:960px){
-  .bast-grid,.sobre-inner,.equipe-grid,.cont-inner{grid-template-columns:1fr}
+  .bast-grid,.sobre-inner,.equipe-grid,.cont-inner,.proj-master{grid-template-columns:1fr}
   .reels{justify-content:flex-start}
   .dest-fotos{grid-template-columns:repeat(2,1fr)}
   .pessoa{grid-template-columns:1fr}
@@ -215,7 +211,6 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
   .hero-content{padding:0 20px 40px}
   .callout .label{max-width:150px;font-size:9.5px;padding:7px 10px}
   .callout-madeira{display:none}
-  .grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
   .dest-fotos{grid-template-columns:1fr 1fr}
   .contato{padding:64px 20px 0}
@@ -279,46 +274,12 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
       <h2 class="section-title">Projetos</h2>
       <span class="section-note">SELEÇÃO — 06 PROJETOS</span>
     </div>
-    <div class="grid">
-      <button type="button" class="card reveal" data-gallery="santinho-dusk.jpg,santinho-front.jpg,santinho-palm.jpg,santinho-noite.jpg,santinho-cozinha.jpg,santinho-interior.jpg" data-title="Casa Santinho">
-        <div class="thumb"><img src="assets/santinho-dusk.jpg" loading="lazy" alt="Casa Santinho — fachada ao entardecer"></div>
-        <div class="card-meta"><span>RES-01 · PRAIA DO SANTINHO</span><span>RESIDENCIAL</span></div>
-        <h3>Casa Santinho</h3>
-      </button>
-      <a class="card reveal" href="#destaque">
-        <div class="thumb"><img src="assets/mf-sala.jpg" loading="lazy" alt="Residencial Maria Francisca — sala"></div>
-        <div class="card-meta"><span>INT-02 · CAMPECHE</span><span>INTERIORES</span></div>
-        <h3>Residencial Maria Francisca</h3>
-      </a>
-      <button type="button" class="card reveal" data-gallery="cobertura-piscina.jpg,cobertura-fachada.jpg,cobertura-noite.jpg" data-title="Cobertura de Vidro">
-        <div class="thumb"><img src="assets/cobertura-fachada.jpg" loading="lazy" alt="Cobertura — fachada"></div>
-        <div class="card-meta"><span>RES-03 · LITORAL</span><span>RESIDENCIAL</span></div>
-        <h3>Cobertura de Vidro</h3>
-      </button>
-      <button type="button" class="card reveal" data-gallery="gourmet-1.jpg,gourmet-2.jpg,gourmet-3.jpg,gourmet-4.jpg" data-title="Espaço Gourmet — Condomínio">
-        <div class="thumb"><img src="assets/gourmet-1.jpg" loading="lazy" alt="Espaço gourmet — área externa"></div>
-        <div class="card-meta"><span>EXT-04 · LITORAL</span><span>ÁREA EXTERNA</span></div>
-        <h3>Espaço Gourmet — Condomínio</h3>
-      </button>
-      <button type="button" class="card reveal" data-gallery="retrofit-1.jpg,retrofit-2.jpg,retrofit-3.jpg" data-title="Retrofit &amp; Área Gourmet">
-        <div class="thumb"><img src="assets/retrofit-1.jpg" loading="lazy" alt="Retrofit — edifício"></div>
-        <div class="card-meta"><span>REF-05</span><span>RETROFIT</span></div>
-        <h3>Retrofit &amp; Área Gourmet</h3>
-      </button>
-      <button type="button" class="card reveal" data-gallery="casa-mar-varanda.jpg,casa-mar-fachada.jpg,casa-mar-deck.jpg" data-title="Casa Frente-Mar">
-        <div class="thumb"><img src="assets/casa-mar-varanda.jpg" loading="lazy" alt="Casa frente-mar — varanda com vista para o oceano"></div>
-        <div class="card-meta"><span>RES-06 · LITORAL</span><span>RESIDENCIAL</span></div>
-        <h3>Casa Frente-Mar</h3>
-      </button>
-    </div>
-    <div class="project-expand" id="projectExpand">
-      <button type="button" class="expand-back" id="expandBack">← Voltar aos projetos</button>
-      <div class="expand-head">
-        <span class="section-note" id="expandMeta"></span>
-        <h3 id="expandTitle"></h3>
+    <div class="proj-master reveal">
+      <div class="proj-viewer">
+        <div class="proj-viewer-img-wrap"><img id="projMainImg" src="" alt=""></div>
+        <div class="proj-thumbs" id="projThumbs"></div>
       </div>
-      <div class="expand-hero-wrap"><img class="expand-hero" id="expandHero" src="" alt=""></div>
-      <div class="expand-grid" id="expandGrid"></div>
+      <div class="proj-list" id="projList"></div>
     </div>
   </div>
 </section>
@@ -571,55 +532,73 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowRight')document.getElementById('lbNext').click();
 });
 
-// expansão em página — clicar num projeto esconde os outros e mostra todas as fotos dele ali mesmo
-const grid=document.querySelector('.grid');
-const expandPanel=document.getElementById('projectExpand');
-const expandHero=document.getElementById('expandHero');
-const expandGridEl=document.getElementById('expandGrid');
-const expandTitleEl=document.getElementById('expandTitle');
-const expandMetaEl=document.getElementById('expandMeta');
+// projetos — visualizador mestre-detalhe: lista nunca some, só a imagem grande troca
+const PROJECTS=[
+  {code:'RES-01 · PRAIA DO SANTINHO',type:'RESIDENCIAL',title:'Casa Santinho',imgs:['santinho-dusk.jpg','santinho-front.jpg','santinho-palm.jpg','santinho-noite.jpg','santinho-cozinha.jpg','santinho-interior.jpg']},
+  {code:'INT-02 · CAMPECHE',type:'INTERIORES',title:'Residencial Maria Francisca',link:'#destaque'},
+  {code:'RES-03 · LITORAL',type:'RESIDENCIAL',title:'Cobertura de Vidro',imgs:['cobertura-piscina.jpg','cobertura-fachada.jpg','cobertura-noite.jpg']},
+  {code:'EXT-04 · LITORAL',type:'ÁREA EXTERNA',title:'Espaço Gourmet — Condomínio',imgs:['gourmet-1.jpg','gourmet-2.jpg','gourmet-3.jpg','gourmet-4.jpg']},
+  {code:'REF-05',type:'RETROFIT',title:'Retrofit & Área Gourmet',imgs:['retrofit-1.jpg','retrofit-2.jpg','retrofit-3.jpg']},
+  {code:'RES-06 · LITORAL',type:'RESIDENCIAL',title:'Casa Frente-Mar',imgs:['casa-mar-varanda.jpg','casa-mar-fachada.jpg','casa-mar-deck.jpg']}
+];
+const projMainImg=document.getElementById('projMainImg');
+const projThumbs=document.getElementById('projThumbs');
+const projList=document.getElementById('projList');
+let activeProj=0,activeImg=0;
 
-function expandProject(imgs,title,meta,sourceEl){
-  grid.style.opacity='0';
-  setTimeout(()=>{
-    grid.style.display='none';
-    expandTitleEl.textContent=title;
-    expandMetaEl.textContent=meta;
-    expandHero.src='assets/'+imgs[0];
-    expandHero.onclick=()=>lbOpen(imgs,title,expandHero,0);
-    expandGridEl.innerHTML='';
-    imgs.slice(1).forEach((name,i)=>{
-      const im=document.createElement('img');
-      im.src='assets/'+name;im.loading='lazy';im.alt=title;
-      im.addEventListener('click',()=>lbOpen(imgs,title,im,i+1));
-      expandGridEl.appendChild(im);
-    });
-    expandPanel.style.display='block';
-    expandPanel.style.opacity='0';
-    requestAnimationFrame(()=>{
-      expandPanel.style.transition='opacity .4s cubic-bezier(.16,1,.3,1)';
-      expandPanel.style.opacity='1';
-    });
-    if(sourceEl)flipInto(sourceEl,expandHero,900);
-    expandPanel.scrollIntoView({behavior:'smooth',block:'start'});
-  },350);
-}
-document.querySelectorAll('[data-gallery]').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const thumbImg=btn.querySelector('.thumb img');
-    const meta=btn.querySelector('.card-meta span').textContent;
-    expandProject(btn.dataset.gallery.split(','),btn.dataset.title,meta,thumbImg);
+function renderList(){
+  projList.innerHTML=PROJECTS.map((p,i)=>{
+    const num=String(i+1).padStart(2,'0');
+    const tag=p.link?'a':'button';
+    const attrs=p.link?`href="${p.link}"`:`type="button" data-idx="${i}"`;
+    const active=(!p.link&&i===activeProj)?'active':'';
+    return `<${tag} class="proj-item ${active}" ${attrs}>
+      <span class="proj-item-num">${num}</span>
+      <span class="proj-item-title">${p.title}</span>
+      <span class="proj-item-meta">${p.code} · ${p.type}</span>
+    </${tag}>`;
+  }).join('');
+  projList.querySelectorAll('button.proj-item').forEach(btn=>{
+    btn.addEventListener('click',()=>selectProject(+btn.dataset.idx));
   });
-});
-document.getElementById('expandBack').addEventListener('click',()=>{
-  expandPanel.style.opacity='0';
+}
+
+function renderThumbs(){
+  const p=PROJECTS[activeProj];
+  projThumbs.innerHTML=p.imgs.map((img,i)=>`<img src="assets/${img}" data-i="${i}" class="${i===activeImg?'active':''}" loading="lazy" alt="${p.title}">`).join('');
+  projThumbs.querySelectorAll('img').forEach(t=>{
+    t.addEventListener('click',()=>selectImage(+t.dataset.i));
+  });
+}
+
+function selectImage(i){
+  const p=PROJECTS[activeProj];
+  activeImg=i;
+  projMainImg.style.opacity='0';
   setTimeout(()=>{
-    expandPanel.style.display='none';
-    grid.style.display='';
-    requestAnimationFrame(()=>{grid.style.opacity='1'});
-    grid.scrollIntoView({behavior:'smooth',block:'start'});
-  },350);
-});
+    projMainImg.src='assets/'+p.imgs[activeImg];
+    projThumbs.querySelectorAll('img').forEach((t,idx)=>t.classList.toggle('active',idx===activeImg));
+    projMainImg.style.opacity='1';
+  },250);
+}
+
+function selectProject(idx){
+  if(idx===activeProj)return;
+  activeProj=idx;activeImg=0;
+  const p=PROJECTS[idx];
+  projMainImg.style.opacity='0';
+  setTimeout(()=>{
+    projMainImg.src='assets/'+p.imgs[0];
+    renderThumbs();
+    renderList();
+    projMainImg.style.opacity='1';
+  },250);
+}
+
+renderList();
+renderThumbs();
+projMainImg.src='assets/'+PROJECTS[0].imgs[0];
+projMainImg.addEventListener('click',()=>lbOpen(PROJECTS[activeProj].imgs,PROJECTS[activeProj].title,projMainImg,activeImg));
 </script>
 </body>
 </html>
