@@ -97,9 +97,7 @@ nav a:hover{color:var(--cumaru-dark)}
 .proj-thumbs img{width:56px;height:56px;object-fit:cover;cursor:pointer;opacity:.45;transition:opacity .2s;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01)}
 .proj-thumbs img.active,.proj-thumbs img:hover{opacity:1}
 .proj-side{position:relative;height:56vh;min-height:420px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent,black 10%,black 90%,transparent);mask-image:linear-gradient(to bottom,transparent,black 10%,black 90%,transparent)}
-.proj-side-track{display:flex;flex-direction:column;gap:14px;animation:sidescroll 34s linear infinite}
-@media (hover:hover){.proj-side:hover .proj-side-track{animation-play-state:paused}}
-@keyframes sidescroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.proj-side-track{display:flex;flex-direction:column;gap:14px}
 .side-card{display:flex;gap:14px;align-items:center;text-align:left;text-decoration:none;color:var(--ink);background:none;border:1px solid transparent;padding:10px;cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s,opacity .2s}
 .side-card:hover{border-color:rgba(20,32,31,.15);background:rgba(255,255,255,.5)}
 .side-card.active{opacity:.4;pointer-events:none}
@@ -626,6 +624,30 @@ function switchProject(idx,sourceEl){
 }
 
 renderSide();
+
+// rolagem automática via JS — evita bugs de :hover travado em touch
+(function(){
+  const side=document.getElementById('projSide');
+  let offset=0,paused=false,last=null;
+  const speed=16; // px por segundo
+  function tick(ts){
+    if(last===null)last=ts;
+    const dt=(ts-last)/1000;
+    last=ts;
+    if(!paused){
+      offset+=speed*dt;
+      const half=projSideTrack.scrollHeight/2;
+      if(half>0&&offset>=half)offset-=half;
+      projSideTrack.style.transform=`translateY(${-offset}px)`;
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+  if(matchMedia('(hover:hover)').matches){
+    side.addEventListener('mouseenter',()=>paused=true);
+    side.addEventListener('mouseleave',()=>paused=false);
+  }
+})();
 renderThumbs();
 projMainImg.src='assets/'+PROJECTS[0].imgs[0];
 projMainImg.addEventListener('click',()=>lbOpen(PROJECTS[activeProj].imgs,PROJECTS[activeProj].title,projMainImg,activeImg));
