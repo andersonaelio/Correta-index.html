@@ -514,10 +514,35 @@ const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbIm
       lbTitle=document.getElementById('lbTitle'),lbCount=document.getElementById('lbCount');
 let lbImgs=[],lbIdx=0;
 function lbShow(){lbImg.src='assets/'+lbImgs[lbIdx];lbCount.textContent=(lbIdx+1)+' / '+lbImgs.length}
-function lbOpen(imgs,title){lbImgs=imgs;lbIdx=0;lbTitle.textContent=title;lbShow();lb.classList.add('open')}
-function lbCloseFn(){lb.classList.remove('open')}
+function lbOpen(imgs,title,sourceEl){
+  lbImgs=imgs;lbIdx=0;lbTitle.textContent=title;
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+  if(!sourceEl){lbShow();return}
+  // FLIP: a foto clicada cresce a partir da posição/tamanho dela no grid até virar a imagem grande
+  const startRect=sourceEl.getBoundingClientRect();
+  lbImg.src='assets/'+lbImgs[lbIdx];
+  lbCount.textContent='1 / '+lbImgs.length;
+  lbImg.style.transition='none';
+  requestAnimationFrame(()=>{
+    const endRect=lbImg.getBoundingClientRect();
+    const scaleX=startRect.width/endRect.width, scaleY=startRect.height/endRect.height;
+    const dx=(startRect.left+startRect.width/2)-(endRect.left+endRect.width/2);
+    const dy=(startRect.top+startRect.height/2)-(endRect.top+endRect.height/2);
+    lbImg.style.transformOrigin='center center';
+    lbImg.style.transform=`translate(${dx}px,${dy}px) scale(${scaleX},${scaleY})`;
+    requestAnimationFrame(()=>{
+      lbImg.style.transition='transform .6s cubic-bezier(.16,1,.3,1)';
+      lbImg.style.transform='none';
+    });
+  });
+}
+function lbCloseFn(){lb.classList.remove('open');document.body.style.overflow=''}
 document.querySelectorAll('[data-gallery]').forEach(btn=>{
-  btn.addEventListener('click',()=>lbOpen(btn.dataset.gallery.split(','),btn.dataset.title));
+  btn.addEventListener('click',()=>{
+    const thumbImg=btn.querySelector('.thumb img');
+    lbOpen(btn.dataset.gallery.split(','),btn.dataset.title,thumbImg);
+  });
 });
 document.getElementById('lbClose').addEventListener('click',lbCloseFn);
 document.getElementById('lbPrev').addEventListener('click',()=>{lbIdx=(lbIdx-1+lbImgs.length)%lbImgs.length;lbShow()});
