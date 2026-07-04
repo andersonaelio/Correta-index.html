@@ -144,6 +144,9 @@ nav a:hover{color:var(--cumaru-dark)}
 .pessoa-txt h3{margin:0;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.05}
 .pessoa-txt p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-soft)}
 .pessoa-reg{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted)}
+.pessoa-creds{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.pessoa-creds li{font-size:12px;color:var(--ink-soft);position:relative;padding-left:12px}
+.pessoa-creds li::before{content:"–";position:absolute;left:0;color:var(--muted)}
 
 /* processo */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
@@ -294,7 +297,7 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
 <section id="equipe" class="section" style="background:var(--noturno)">
   <div class="section-inner">
     <div class="section-head reveal on-dark">
-      <h2 class="section-title on-dark">Quem faz</h2>
+      <h2 class="section-title on-dark">Seu sonho, construído por elas.</h2>
       <span class="section-note" style="color:#A9B0A8">FUNDADORAS</span>
     </div>
     <div class="equipe-grid">
@@ -303,8 +306,13 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
         <div class="pessoa-txt">
           <span class="pessoa-cargo" style="color:var(--cumaru-dark)">ENGENHARIA CIVIL</span>
           <h3>Camila Argiles</h3>
-          <p>Cuida da parte técnica: estrutura, execução e viabilidade. É quem garante que o projeto saia do papel sem sustos.</p>
           <span class="pessoa-reg">CREA-SC · ENG. CIVIL</span>
+          <ul class="pessoa-creds">
+            <li>Pós-graduação em Design de Interiores e Produção de Ambientes</li>
+            <li>Projetos autorais</li>
+            <li>Consultoria online</li>
+            <li>Architectural Designer</li>
+          </ul>
         </div>
       </div>
       <div class="pessoa reveal">
@@ -312,7 +320,6 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
         <div class="pessoa-txt">
           <span class="pessoa-cargo" style="color:var(--mata)">ARQUITETURA</span>
           <h3>Karoline Gaspar</h3>
-          <p>Cuida do projeto arquitetônico e dos interiores. Ouve a rotina de cada família e transforma isso em espaço, luz e material.</p>
           <span class="pessoa-reg">CAU-SC · ARQUITETA</span>
         </div>
       </div>
