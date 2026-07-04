@@ -36,11 +36,11 @@ a{color:inherit}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.07)}}
 .reveal{opacity:0;transform:translateY(12px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
-.grid .reveal:nth-child(2),.serv-grid .reveal:nth-child(2),.equipe-grid .reveal:nth-child(2),.steps .reveal:nth-child(2),.dest-fotos .reveal:nth-child(2){transition-delay:.08s}
-.grid .reveal:nth-child(3),.serv-grid .reveal:nth-child(3),.equipe-grid .reveal:nth-child(3),.steps .reveal:nth-child(3),.dest-fotos .reveal:nth-child(3){transition-delay:.16s}
-.grid .reveal:nth-child(4),.serv-grid .reveal:nth-child(4),.equipe-grid .reveal:nth-child(4),.steps .reveal:nth-child(4),.dest-fotos .reveal:nth-child(4){transition-delay:.24s}
-.grid .reveal:nth-child(5),.serv-grid .reveal:nth-child(5),.equipe-grid .reveal:nth-child(5),.steps .reveal:nth-child(5),.dest-fotos .reveal:nth-child(5){transition-delay:.32s}
-.grid .reveal:nth-child(6),.serv-grid .reveal:nth-child(6),.equipe-grid .reveal:nth-child(6),.steps .reveal:nth-child(6),.dest-fotos .reveal:nth-child(6){transition-delay:.4s}
+.grid .reveal:nth-child(2),.serv-grid .reveal:nth-child(2),.equipe-grid .reveal:nth-child(2),.steps .reveal:nth-child(2){transition-delay:.08s}
+.grid .reveal:nth-child(3),.serv-grid .reveal:nth-child(3),.equipe-grid .reveal:nth-child(3),.steps .reveal:nth-child(3){transition-delay:.16s}
+.grid .reveal:nth-child(4),.serv-grid .reveal:nth-child(4),.equipe-grid .reveal:nth-child(4),.steps .reveal:nth-child(4){transition-delay:.24s}
+.grid .reveal:nth-child(5),.serv-grid .reveal:nth-child(5),.equipe-grid .reveal:nth-child(5),.steps .reveal:nth-child(5){transition-delay:.32s}
+.grid .reveal:nth-child(6),.serv-grid .reveal:nth-child(6),.equipe-grid .reveal:nth-child(6),.steps .reveal:nth-child(6){transition-delay:.4s}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 
 /* nav */
@@ -115,8 +115,6 @@ nav a:hover{color:var(--cumaru-dark)}
 .spec-list{display:flex;flex-direction:column;border-top:1px solid rgba(20,32,31,.18)}
 .spec-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(20,32,31,.12);font-family:var(--mono);font-size:11px;letter-spacing:.1em}
 .spec-row span:first-child{color:var(--muted)}
-.dest-fotos{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:20px}
-.dest-fotos img{width:100%;aspect-ratio:1;object-fit:cover;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01)}
 
 /* bastidores */
 .bastidores{background:var(--noturno)}
@@ -143,7 +141,7 @@ nav a:hover{color:var(--cumaru-dark)}
 .pessoa-photo{width:100%;height:100%;object-fit:cover}
 .pessoa-info{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:28px 26px}
 .pessoa-info h3{margin:0 0 4px;font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--papel)}
-.pchip{display:flex;align-items:center;gap:0;opacity:0;transform:translateY(6px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.pchip{display:flex;align-items:center;gap:0;opacity:0;transform:translateY(8px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
 .pchip.in{opacity:1;transform:none}
 .pchip.quote .label{font-style:italic;font-family:var(--font);font-size:14px;line-height:1.5;background:none;padding:0;max-width:none}
 .pchip.cargo .label{color:var(--cumaru)}
@@ -202,7 +200,6 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
 @media (max-width:960px){
   .bast-grid,.sobre-inner,.equipe-grid,.cont-inner,.proj-master{grid-template-columns:1fr}
   .reels{justify-content:flex-start}
-  .dest-fotos{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:640px){
   .nav-wrap{padding:14px 20px}
@@ -215,7 +212,6 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
   .callout .label{max-width:150px;font-size:9.5px;padding:7px 10px}
   .callout-madeira{display:none}
   .steps{grid-template-columns:1fr}
-  .dest-fotos{grid-template-columns:1fr 1fr}
   .contato{padding:64px 20px 0}
   .footer-inner{padding:20px}
 }
@@ -284,7 +280,6 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
       <div class="proj-viewer">
         <div class="proj-viewer-img-wrap"><img id="projMainImg" src="" alt=""></div>
         <div class="proj-thumbs" id="projThumbs"></div>
-        <a href="#destaque" id="projDetailLink" style="display:none;margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--cumaru-dark);text-decoration:none;border-bottom:1px solid rgba(122,78,40,.4)">Ver projeto completo →</a>
       </div>
       <div class="proj-side" id="projSide"><div class="proj-side-track" id="projSideTrack"></div></div>
     </div>
@@ -342,12 +337,6 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
         <div class="spec-row"><span>PROGRAMA</span><span>SALA · COZINHA · BANHO</span></div>
         <div class="spec-row"><span>ESCOPO</span><span>PROJETO + INTERIORES</span></div>
       </div>
-    </div>
-    <div class="dest-fotos">
-      <img class="reveal" src="assets/mf-sala.jpg" loading="lazy" alt="Sala de estar">
-      <img class="reveal" src="assets/mf-cozinha.jpg" loading="lazy" alt="Cozinha">
-      <img class="reveal" src="assets/mf-bancada.jpg" loading="lazy" alt="Bancada">
-      <img class="reveal" src="assets/mf-banheiro.jpg" loading="lazy" alt="Banheiro">
     </div>
   </div>
 </section>
@@ -495,7 +484,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 // chips da equipe — cascata ao entrar na tela, mesma lógica de sequência da hero
 const pchipIo=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){
-    e.target.querySelectorAll('.pchip').forEach((c,i)=>setTimeout(()=>c.classList.add('in'),i*160));
+    e.target.querySelectorAll('.pchip').forEach((c,i)=>setTimeout(()=>c.classList.add('in'),i*340));
     pchipIo.unobserve(e.target);
   }
 }),{threshold:.3});
@@ -559,7 +548,7 @@ addEventListener('keydown',e=>{
 // clicar num card faz ele "vir pra frente" (FLIP) e virar a imagem principal
 const PROJECTS=[
   {code:'RES-01 · PRAIA DO SANTINHO',type:'RESIDENCIAL',title:'Casa Santinho',imgs:['santinho-dusk.jpg','santinho-front.jpg','santinho-palm.jpg','santinho-noite.jpg','santinho-cozinha.jpg','santinho-interior.jpg']},
-  {code:'INT-02 · CAMPECHE',type:'INTERIORES',title:'Residencial Maria Francisca',imgs:['mf-sala.jpg','mf-cozinha.jpg','mf-bancada.jpg','mf-banheiro.jpg'],detail:'#destaque'},
+  {code:'INT-02 · CAMPECHE',type:'INTERIORES',title:'Residencial Maria Francisca',imgs:['mf-sala.jpg','mf-cozinha.jpg','mf-bancada.jpg','mf-banheiro.jpg']},
   {code:'RES-03 · LITORAL',type:'RESIDENCIAL',title:'Cobertura de Vidro',imgs:['cobertura-piscina.jpg','cobertura-fachada.jpg','cobertura-noite.jpg']},
   {code:'EXT-04 · LITORAL',type:'ÁREA EXTERNA',title:'Espaço Gourmet — Condomínio',imgs:['gourmet-1.jpg','gourmet-2.jpg','gourmet-3.jpg','gourmet-4.jpg']},
   {code:'REF-05',type:'RETROFIT',title:'Retrofit & Área Gourmet',imgs:['retrofit-1.jpg','retrofit-2.jpg','retrofit-3.jpg']},
@@ -595,13 +584,6 @@ function updateSideActive(){
   });
 }
 
-function updateDetailLink(){
-  const p=PROJECTS[activeProj];
-  const link=document.getElementById('projDetailLink');
-  if(p.detail){link.href=p.detail;link.style.display='inline-block'}
-  else{link.style.display='none'}
-}
-
 function renderThumbs(){
   const p=PROJECTS[activeProj];
   projThumbs.innerHTML=p.imgs.map((img,i)=>`<img src="assets/${img}" data-i="${i}" class="${i===activeImg?'active':''}" loading="lazy" alt="${p.title}">`).join('');
@@ -628,12 +610,10 @@ function switchProject(idx,sourceEl){
   if(sourceEl)flipInto(sourceEl,projMainImg,750);
   renderThumbs();
   updateSideActive();
-  updateDetailLink();
 }
 
 renderSide();
 renderThumbs();
-updateDetailLink();
 projMainImg.src='assets/'+PROJECTS[0].imgs[0];
 projMainImg.addEventListener('click',()=>lbOpen(PROJECTS[activeProj].imgs,PROJECTS[activeProj].title,projMainImg,activeImg));
 </script>
