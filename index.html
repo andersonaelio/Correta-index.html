@@ -111,7 +111,7 @@ nav a:hover{color:var(--cumaru-dark)}
 /* destaque */
 .destaque{background:var(--papel);border-top:1px solid rgba(20,32,31,.1)}
 .dest-txt{display:flex;flex-direction:column;gap:24px}
-.dest-fotos-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.dest-fotos-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .dest-fotos-row img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.88) contrast(1.05) sepia(.08) brightness(1.01)}
 .dest-txt h2{margin:0;font-size:clamp(32px,3.4vw,48px);font-weight:800;letter-spacing:-.025em;line-height:1.02}
 .dest-txt p{margin:0;font-size:17px;line-height:1.6;color:var(--ink-soft)}
@@ -202,6 +202,7 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
 /* responsivo */
 @media (max-width:960px){
   .bast-grid,.sobre-inner,.equipe-grid,.cont-inner,.proj-master{grid-template-columns:1fr}
+  .pessoa{grid-template-columns:1fr}
   .reels{justify-content:flex-start}
 }
 @media (max-width:640px){
@@ -215,6 +216,7 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
   .hero-content{padding:0 20px 40px}
   .callout .label{max-width:150px;font-size:9.5px;padding:7px 10px}
   .callout-madeira{display:none}
+  .callout-formas{left:auto;right:4%;max-width:calc(100% - 8%)}
   .steps{grid-template-columns:1fr}
   .contato{padding:64px 20px 0}
   .footer-inner{padding:20px}
@@ -252,7 +254,7 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
     <span class="line" style="width:64px"></span>
     <span class="label">Madeira, vidro e concreto em equilíbrio</span>
   </div>
-  <div class="callout" style="left:68%;top:70%">
+  <div class="callout callout-formas" style="left:68%;top:70%">
     <span class="dot"></span>
     <span class="line" style="width:58px"></span>
     <span class="label">Simplicidade nas formas</span>
@@ -335,13 +337,14 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
     </div>
     <div class="dest-txt reveal" style="max-width:640px">
       <h2>Residencial Maria Francisca</h2>
-      <p>Projeto de interiores completo, com marcenaria sob medida e painel em madeira natural. A paleta neutra ajuda a ampliar a luz do apartamento. A equipe da Correta acompanhou tudo, do layout até a entrega.</p>
+      <p>Residencial no Campeche com projeto de interiores completo assinado pela Correta: marcenaria sob medida, painel em madeira natural e uma paleta neutra que ajuda a ampliar a luz do apartamento. A equipe acompanhou tudo, do layout até a entrega.</p>
       <div class="spec-list">
         <div class="spec-row"><span>LOCAL</span><span>CAMPECHE — FLORIANÓPOLIS/SC</span></div>
         <div class="spec-row"><span>PROGRAMA</span><span>SALA · COZINHA · BANHO</span></div>
         <div class="spec-row"><span>ESCOPO</span><span>PROJETO + INTERIORES</span></div>
       </div>
     </div>
+    <span class="section-note" style="display:block;margin-top:36px;margin-bottom:12px">FACHADA DO EMPREENDIMENTO</span>
     <div class="dest-fotos-row">
       <img class="reveal" src="assets/mf-fachada-1.jpg" loading="lazy" alt="Residencial Maria Francisca — fachada">
       <img class="reveal" src="assets/mf-fachada-2.jpg" loading="lazy" alt="Residencial Maria Francisca — vista lateral">
