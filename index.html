@@ -133,7 +133,7 @@ nav a:hover{color:var(--cumaru-dark)}
 
 /* sobre */
 .sobre{background:var(--noturno)}
-.sobre-inner{max-width:1320px;margin:0 auto;border-top:1px solid rgba(229,225,216,.14);padding-top:88px;display:grid;grid-template-columns:1fr 1.5fr;gap:64px}
+.sobre-inner{max-width:1320px;margin:0 auto;border-top:1px solid rgba(229,225,216,.14);padding:88px 48px 0;display:grid;grid-template-columns:1fr 1.5fr;gap:64px}
 .sobre-lead{margin:0;font-size:clamp(24px,2.4vw,34px);font-weight:500;line-height:1.35;letter-spacing:-.015em;color:var(--concreto)}
 .sobre-body{margin:22px 0 0;font-size:17px;line-height:1.7;color:#A9B0A8;max-width:62ch}
 
@@ -207,6 +207,7 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
 }
 @media (max-width:640px){
   .nav-wrap{padding:14px 20px}
+  .sobre-inner{padding-left:20px;padding-right:20px}
   .dest-fotos-row{grid-template-columns:1fr}
   nav{position:fixed;inset:0;top:64px;background:var(--concreto);flex-direction:column;justify-content:flex-start;padding:40px 20px;gap:26px;transform:translateX(100%);transition:transform .3s;z-index:40}
   nav.open{transform:none}
@@ -216,7 +217,7 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
   .hero-content{padding:0 20px 40px}
   .callout .label{max-width:150px;font-size:9.5px;padding:7px 10px}
   .callout-madeira{display:none}
-  .callout-formas{left:auto!important;right:4%;max-width:calc(100% - 8%)}
+  .callout-formas{display:none}
   .steps{grid-template-columns:1fr}
   .contato{padding:64px 20px 0}
   .footer-inner{padding:20px}
