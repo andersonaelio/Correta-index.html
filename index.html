@@ -136,11 +136,12 @@ nav a:hover{color:var(--cumaru-dark)}
 .pessoa-reg{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted)}
 
 /* processo */
+.processo{background:var(--noturno)}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
-.step{border-top:2px solid var(--noturno);padding-top:20px;display:flex;flex-direction:column;gap:12px}
-.step .num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--cumaru-dark)}
-.step h3{margin:0;font-size:22px;font-weight:700;letter-spacing:-.015em}
-.step p{margin:0;font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.step{border-top:2px solid rgba(229,225,216,.3);padding-top:20px;display:flex;flex-direction:column;gap:12px}
+.step .num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--cumaru)}
+.step h3{margin:0;font-size:22px;font-weight:700;letter-spacing:-.015em;color:var(--papel)}
+.step p{margin:0;font-size:15px;line-height:1.6;color:#A9B0A8}
 
 /* servicos */
 .servicos{background:var(--papel);border-top:1px solid rgba(20,32,31,.1)}
@@ -394,11 +395,11 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
 </section>
 
 <!-- PROCESSO -->
-<section id="processo" class="section" style="padding-top:32px">
+<section id="processo" class="section processo" style="padding-top:32px">
   <div class="section-inner">
-    <div class="section-head reveal">
-      <h2 class="section-title">Como trabalhamos</h2>
-      <span class="section-note">4 ETAPAS</span>
+    <div class="section-head reveal on-dark">
+      <h2 class="section-title on-dark">Como trabalhamos</h2>
+      <span class="section-note" style="color:#A9B0A8">4 ETAPAS</span>
     </div>
     <div class="steps">
       <div class="step reveal"><span class="num">01</span><h3>Briefing</h3><p>Questionário que serve como guia em todo o processo do projeto.</p></div>
