@@ -134,18 +134,19 @@ nav a:hover{color:var(--cumaru-dark)}
 .sobre-body{margin:22px 0 0;font-size:17px;line-height:1.7;color:#A9B0A8;max-width:62ch}
 
 /* equipe */
-.equipe-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.pessoa{position:relative;aspect-ratio:3/4;max-height:560px;overflow:hidden;background:#DAD5C8}
+.equipe-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.pessoa{display:flex;flex-direction:column;gap:26px}
+.pessoa-photo-frame{aspect-ratio:4/5;max-height:400px;overflow:hidden;background:#DAD5C8}
 .pessoa-photo{width:100%;height:100%;object-fit:cover}
-.pessoa-overlay{position:absolute;left:0;right:0;bottom:0;padding:30px 26px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(to top,rgba(20,32,31,.96) 0%,rgba(20,32,31,.88) 40%,rgba(20,32,31,.4) 75%,transparent 100%)}
-.pessoa-quote{margin:0 0 4px;font-size:1.05rem;font-style:italic;line-height:1.5;color:var(--papel);border-left:3px solid var(--cumaru);padding-left:14px}
-.pessoa-quote.is-placeholder{display:inline-block;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:#C9C4B6;border-left:none;padding:5px 10px;background:rgba(247,246,242,.1)}
-.pessoa-cargo{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--cumaru)}
-.pessoa-overlay h3{margin:0;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--papel)}
-.pessoa-reg{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:#A9B0A8}
-.pessoa-creds{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
-.pessoa-creds li{font-size:12px;color:#C9C4B6;position:relative;padding-left:12px}
-.pessoa-creds li::before{content:"–";position:absolute;left:0;color:#8f8f86}
+.pessoa-info{display:flex;flex-direction:column;gap:13px}
+.pessoa-info h3{margin:0 0 2px;font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--papel)}
+.pchip{display:flex;align-items:flex-start;gap:0;opacity:0;transform:translateY(6px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.pchip.in{opacity:1;transform:none}
+.pchip .dot{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--cumaru);background:rgba(20,32,31,.4);flex-shrink:0;margin-top:5px}
+.pchip .line{height:1px;width:20px;background:rgba(247,246,242,.28);flex-shrink:0;margin:0 8px;margin-top:9px}
+.pchip .label{font-family:var(--mono);font-size:11px;letter-spacing:.04em;line-height:1.6;color:#C9C4B6}
+.pchip.quote .label{font-style:italic;font-family:var(--font);font-size:14px;line-height:1.5;color:var(--papel)}
+.pchip.cargo .label{color:var(--cumaru);letter-spacing:.12em}
 
 /* processo */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
@@ -283,6 +284,7 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
       <div class="proj-viewer">
         <div class="proj-viewer-img-wrap"><img id="projMainImg" src="" alt=""></div>
         <div class="proj-thumbs" id="projThumbs"></div>
+        <a href="#destaque" id="projDetailLink" style="display:none;margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--cumaru-dark);text-decoration:none;border-bottom:1px solid rgba(122,78,40,.4)">Ver projeto completo →</a>
       </div>
       <div class="proj-side" id="projSide"><div class="proj-side-track" id="projSideTrack"></div></div>
     </div>
@@ -298,28 +300,26 @@ footer{border-top:1px solid rgba(229,225,216,.14)}
       <span class="section-note" style="color:#A9B0A8">FUNDADORAS</span>
     </div>
     <div class="equipe-grid">
-      <div class="pessoa reveal">
-        <img class="pessoa-photo" src="assets/camila.jpg" alt="Camila Argiles">
-        <div class="pessoa-overlay">
-          <blockquote class="pessoa-quote is-placeholder">Frase da Camila — a confirmar</blockquote>
+      <div class="pessoa">
+        <div class="pessoa-photo-frame"><img class="pessoa-photo" src="assets/camila.jpg" alt="Camila Argiles"></div>
+        <div class="pessoa-info">
           <h3>Camila Argiles</h3>
-          <span class="pessoa-cargo">ENGENHARIA CIVIL</span>
-          <span class="pessoa-reg">CREA-SC 156920-2J · 156467-8</span>
-          <ul class="pessoa-creds">
-            <li>Pós-graduação em Design de Interiores e Produção de Ambientes</li>
-            <li>Projetos autorais</li>
-            <li>Consultoria online</li>
-            <li>Architectural Designer</li>
-          </ul>
+          <div class="pchip quote"><span class="dot"></span><span class="line"></span><span class="label">Frase da Camila — a confirmar</span></div>
+          <div class="pchip cargo"><span class="dot"></span><span class="line"></span><span class="label">ENGENHARIA CIVIL</span></div>
+          <div class="pchip"><span class="dot"></span><span class="line"></span><span class="label">CREA-SC 156920-2J · 156467-8</span></div>
+          <div class="pchip"><span class="dot"></span><span class="line"></span><span class="label">Pós-graduação em Design de Interiores e Produção de Ambientes</span></div>
+          <div class="pchip"><span class="dot"></span><span class="line"></span><span class="label">Projetos autorais</span></div>
+          <div class="pchip"><span class="dot"></span><span class="line"></span><span class="label">Consultoria online</span></div>
+          <div class="pchip"><span class="dot"></span><span class="line"></span><span class="label">Architectural Designer</span></div>
         </div>
       </div>
-      <div class="pessoa reveal">
-        <img class="pessoa-photo" src="assets/karoline.jpg" alt="Karoline Gaspar">
-        <div class="pessoa-overlay">
-          <blockquote class="pessoa-quote is-placeholder">Frase da Karoline — a confirmar</blockquote>
+      <div class="pessoa">
+        <div class="pessoa-photo-frame"><img class="pessoa-photo" src="assets/karoline.jpg" alt="Karoline Gaspar"></div>
+        <div class="pessoa-info">
           <h3>Karoline Gaspar</h3>
-          <span class="pessoa-cargo">ARQUITETURA</span>
-          <span class="pessoa-reg">CAU-SC · ARQUITETA</span>
+          <div class="pchip quote"><span class="dot"></span><span class="line"></span><span class="label">Frase da Karoline — a confirmar</span></div>
+          <div class="pchip cargo"><span class="dot"></span><span class="line"></span><span class="label">ARQUITETURA</span></div>
+          <div class="pchip"><span class="dot"></span><span class="line"></span><span class="label">CAU-SC · ARQUITETA</span></div>
         </div>
       </div>
     </div>
@@ -491,6 +491,15 @@ addEventListener('scroll',()=>waFloat.classList.toggle('show',scrollY>innerHeigh
 
 // reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+
+// chips da equipe — cascata ao entrar na tela, mesma lógica de sequência da hero
+const pchipIo=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.querySelectorAll('.pchip').forEach((c,i)=>setTimeout(()=>c.classList.add('in'),i*160));
+    pchipIo.unobserve(e.target);
+  }
+}),{threshold:.3});
+document.querySelectorAll('.pessoa').forEach(p=>pchipIo.observe(p));
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 // callouts do hero — sequência: ponto → linha desenha → texto
@@ -550,7 +559,7 @@ addEventListener('keydown',e=>{
 // clicar num card faz ele "vir pra frente" (FLIP) e virar a imagem principal
 const PROJECTS=[
   {code:'RES-01 · PRAIA DO SANTINHO',type:'RESIDENCIAL',title:'Casa Santinho',imgs:['santinho-dusk.jpg','santinho-front.jpg','santinho-palm.jpg','santinho-noite.jpg','santinho-cozinha.jpg','santinho-interior.jpg']},
-  {code:'INT-02 · CAMPECHE',type:'INTERIORES',title:'Residencial Maria Francisca',link:'#destaque',thumb:'mf-sala.jpg'},
+  {code:'INT-02 · CAMPECHE',type:'INTERIORES',title:'Residencial Maria Francisca',imgs:['mf-sala.jpg','mf-cozinha.jpg','mf-bancada.jpg','mf-banheiro.jpg'],detail:'#destaque'},
   {code:'RES-03 · LITORAL',type:'RESIDENCIAL',title:'Cobertura de Vidro',imgs:['cobertura-piscina.jpg','cobertura-fachada.jpg','cobertura-noite.jpg']},
   {code:'EXT-04 · LITORAL',type:'ÁREA EXTERNA',title:'Espaço Gourmet — Condomínio',imgs:['gourmet-1.jpg','gourmet-2.jpg','gourmet-3.jpg','gourmet-4.jpg']},
   {code:'REF-05',type:'RETROFIT',title:'Retrofit & Área Gourmet',imgs:['retrofit-1.jpg','retrofit-2.jpg','retrofit-3.jpg']},
@@ -562,9 +571,7 @@ const projSideTrack=document.getElementById('projSideTrack');
 let activeProj=0,activeImg=0;
 
 function sideCardHtml(p,i){
-  const thumb=p.thumb||p.imgs[0];
-  const inner=`<img src="assets/${thumb}" alt=""><div class="side-card-txt"><h4>${p.title}</h4><span>${p.code}</span></div>`;
-  if(p.link)return `<a href="${p.link}" class="side-card">${inner}</a>`;
+  const inner=`<img src="assets/${p.imgs[0]}" alt=""><div class="side-card-txt"><h4>${p.title}</h4><span>${p.code}</span></div>`;
   return `<button type="button" class="side-card" data-idx="${i}">${inner}</button>`;
 }
 
@@ -586,6 +593,13 @@ function updateSideActive(){
   projSideTrack.querySelectorAll('button.side-card').forEach(btn=>{
     btn.classList.toggle('active',+btn.dataset.idx===activeProj);
   });
+}
+
+function updateDetailLink(){
+  const p=PROJECTS[activeProj];
+  const link=document.getElementById('projDetailLink');
+  if(p.detail){link.href=p.detail;link.style.display='inline-block'}
+  else{link.style.display='none'}
 }
 
 function renderThumbs(){
@@ -614,10 +628,12 @@ function switchProject(idx,sourceEl){
   if(sourceEl)flipInto(sourceEl,projMainImg,750);
   renderThumbs();
   updateSideActive();
+  updateDetailLink();
 }
 
 renderSide();
 renderThumbs();
+updateDetailLink();
 projMainImg.src='assets/'+PROJECTS[0].imgs[0];
 projMainImg.addEventListener('click',()=>lbOpen(PROJECTS[activeProj].imgs,PROJECTS[activeProj].title,projMainImg,activeImg));
 </script>
