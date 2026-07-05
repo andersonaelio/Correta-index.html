@@ -141,18 +141,20 @@ nav a:hover{color:var(--cumaru-dark)}
 /* separação arquitetura / interiores */
 .cat-split{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .cat-card{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background-size:cover;background-position:center;border:0;padding:0;cursor:pointer;text-align:left;font-family:inherit}
-.cat-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,32,31,.88) 0%,rgba(20,32,31,.2) 55%,rgba(20,32,31,.05) 100%);transition:background .3s}
-.cat-card:hover .cat-card-overlay{background:linear-gradient(to top,rgba(122,78,40,.72) 0%,rgba(20,32,31,.25) 55%,rgba(20,32,31,.05) 100%)}
+.cat-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,32,31,.88) 0%,rgba(20,32,31,.2) 55%,rgba(20,32,31,.05) 100%)}
 .cat-card-txt{position:absolute;left:26px;right:26px;bottom:24px;display:flex;flex-direction:column;gap:12px}
 .cat-card-txt h3{margin:0;font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.02em;color:var(--papel)}
 .cat-card-link{display:flex;align-items:center}
-.cat-card-link .dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--papel);background:rgba(247,246,242,.25);flex-shrink:0}
+.cat-card-link .dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--papel);background:rgba(247,246,242,.25);flex-shrink:0;transition:border-color .2s,background .2s}
 .cat-card-link .line{height:1px;width:28px;background:rgba(247,246,242,.5);margin:0 10px;flex-shrink:0}
-.cat-card-link .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--concreto)}
+.cat-card-link .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--concreto);transition:color .2s}
+.cat-card:hover .cat-card-link .label{color:var(--cumaru)}
+.cat-card:hover .cat-card-link .dot{border-color:var(--cumaru);background:rgba(156,107,62,.35)}
 
 /* sobre */
 .sobre{background:var(--noturno)}
 .sobre-inner{max-width:1320px;margin:0 auto;border-top:1px solid rgba(229,225,216,.14);padding:88px 48px 0;display:grid;grid-template-columns:1fr 1.5fr;gap:64px}
+.sobre-inner .eyebrow{font-size:clamp(22px,2.6vw,36px);letter-spacing:.06em}
 .sobre-lead{margin:0;font-size:clamp(24px,2.4vw,34px);font-weight:500;line-height:1.35;letter-spacing:-.015em;color:var(--concreto)}
 .sobre-body{margin:22px 0 0;font-size:17px;line-height:1.7;color:#A9B0A8;max-width:62ch}
 
